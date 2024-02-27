@@ -1,3 +1,4 @@
+import { api } from '@/libs'
 import { useEffect, useState } from 'react'
 
 export type Transaction = {
@@ -11,13 +12,16 @@ export type Transaction = {
 
 export function useTransactions() {
   const [transactions, setTransactions] = useState<Transaction[]>([])
-  async function loadTransactions() {
-    const response = await fetch('http://localhost:3333/transactions')
-    const data = await response.json()
-    setTransactions(data)
+  async function fetchTransactions(query?: string) {
+    const response = await api.get('/transactions', {
+      params: {
+        query,
+      },
+    })
+    setTransactions(response.data)
   }
   useEffect(() => {
-    loadTransactions()
+    fetchTransactions()
   }, [])
-  return { transactions }
+  return { transactions, fetchTransactions }
 }

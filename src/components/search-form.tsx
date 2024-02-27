@@ -6,6 +6,7 @@ import { ComponentProps } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Button, Input } from './ui'
+import { useTransactionsContext } from '@/hooks'
 
 const searchFormSchema = z.object({
   query: z.string(),
@@ -18,6 +19,8 @@ const styles = cva('flex w-full gap-4 items-center justify-center')
 export type SearchFormProps = ComponentProps<'form'>
 
 export function SearchForm({ className, ...props }: SearchFormProps) {
+  const { fetchTransactions } = useTransactionsContext()
+
   const {
     register,
     handleSubmit,
@@ -26,9 +29,7 @@ export function SearchForm({ className, ...props }: SearchFormProps) {
     resolver: zodResolver(searchFormSchema),
   })
   async function handleSearchTransactions(data: SearchFormInputs) {
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-
-    console.log(data)
+    await fetchTransactions(data.query)
   }
   return (
     <form
