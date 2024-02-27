@@ -9,6 +9,7 @@ import {
 import { cn } from '@/libs'
 import { cva } from 'class-variance-authority'
 import { ComponentProps } from 'react'
+import { useTransactions } from './hook'
 
 const styles = cva(
   'flex flex-col w-full min-h-screen items-center justify-start',
@@ -17,6 +18,7 @@ const styles = cva(
 export type TransactionsProps = ComponentProps<'main'>
 
 export function Transactions({ className, ...props }: TransactionsProps) {
+  const { transactions } = useTransactions()
   return (
     <main className={cn(styles({ className }))} {...props}>
       <Header />
@@ -25,6 +27,26 @@ export function Transactions({ className, ...props }: TransactionsProps) {
         <SearchForm />
         <TableRoot>
           <tbody>
+            {transactions.map((transaction) => (
+              <tr key={transaction.id}>
+                <TableCell variant="firstLeft">
+                  {transaction.description}
+                </TableCell>
+                <TableCell>
+                  <PriceHighlight
+                    variant={
+                      transaction.type === 'income' ? 'income' : 'outcome'
+                    }
+                  >
+                    {transaction.price}
+                  </PriceHighlight>
+                </TableCell>
+                <TableCell>{transaction.category}</TableCell>
+                <TableCell variant="lastRight">
+                  {transaction.createdAt}
+                </TableCell>
+              </tr>
+            ))}
             <tr>
               <TableCell variant="firstLeft">Desenvolvimento de web</TableCell>
               <TableCell>
