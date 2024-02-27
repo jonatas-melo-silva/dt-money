@@ -31,6 +31,30 @@
       "category": "rent",
       "price": 1000,
       "createdAt": "2024-02-27T13:23:30.199Z"
+    },
+    {
+      "id": "3c45",
+      "category": "dev",
+      "description": "Web",
+      "price": 12000,
+      "type": "income",
+      "createdAt": "2024-02-27T17:56:41.418Z"
+    },
+    {
+      "id": "37f8",
+      "category": "dev",
+      "description": "web",
+      "price": 14000,
+      "type": "income",
+      "createdAt": "2024-02-27T18:11:29.488Z"
+    },
+    {
+      "id": "fc9a",
+      "category": "dev",
+      "description": "Ignite",
+      "price": 16000,
+      "type": "outcome",
+      "createdAt": "2024-02-27T18:23:41.032Z"
     }
   ]
 }

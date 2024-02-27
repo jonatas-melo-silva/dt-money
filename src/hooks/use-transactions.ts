@@ -15,13 +15,27 @@ export function useTransactions() {
   async function fetchTransactions(query?: string) {
     const response = await api.get('/transactions', {
       params: {
+        _sort: 'id',
         query,
       },
     })
     setTransactions(response.data)
   }
+  async function createTransaction(
+    data: Omit<Transaction, 'id' | 'createdAt'>,
+  ) {
+    const { category, description, price, type } = data
+    const response = await api.post('/transactions', {
+      category,
+      description,
+      price,
+      type,
+      createdAt: new Date().toISOString(),
+    })
+    setTransactions((prev) => [response.data, ...prev])
+  }
   useEffect(() => {
     fetchTransactions()
   }, [])
-  return { transactions, fetchTransactions }
+  return { transactions, fetchTransactions, createTransaction }
 }

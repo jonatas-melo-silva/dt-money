@@ -1,3 +1,4 @@
+import { useTransactionsContext } from '@/hooks'
 import { cn } from '@/libs'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as Dialog from '@radix-ui/react-dialog'
@@ -25,11 +26,14 @@ const styles = cva(
 export type NewTransactionModalProps = ComponentProps<'div'>
 
 export function NewTransactionModal({ className }: NewTransactionModalProps) {
+  const { createTransaction } = useTransactionsContext()
+
   const {
     control,
     register,
     handleSubmit,
     formState: { isSubmitting },
+    reset,
   } = useForm<NewTransactionFormInputs>({
     resolver: zodResolver(newTransactionSchema),
     defaultValues: {
@@ -38,9 +42,10 @@ export function NewTransactionModal({ className }: NewTransactionModalProps) {
   })
 
   async function handleNewTransaction(data: NewTransactionFormInputs) {
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    const { category, description, price, type } = data
+    await createTransaction({ category, description, price, type })
 
-    console.log(data)
+    reset()
   }
 
   return (
