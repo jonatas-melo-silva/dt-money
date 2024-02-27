@@ -3,6 +3,7 @@ import { cva } from 'class-variance-authority'
 import { ArrowCircleDown, ArrowCircleUp, CurrencyDollar } from 'phosphor-react'
 import { ComponentProps } from 'react'
 import { CardAmount, CardHeader, CardRoot } from './card'
+import { useTransactionsContext } from '@/hooks'
 
 const styles = cva(
   'w-full px-6 md:max-w-[1216px] xl:px-0 grid grid-cols-3 gap-8 -mt-20',
@@ -11,6 +12,8 @@ const styles = cva(
 export type SummaryProps = ComponentProps<'section'>
 
 export function Summary({ className, ...props }: SummaryProps) {
+  const { transactions } = useTransactionsContext()
+  console.log(transactions)
   return (
     <section className={cn(styles({ className }))} {...props}>
       <CardRoot>

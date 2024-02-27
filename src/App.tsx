@@ -1,10 +1,13 @@
 import { Default } from '@/layouts'
 import { Transactions } from '@/pages'
+import { TransactionsProvider } from './contexts'
 
 export function App() {
   return (
     <Default>
-      <Transactions />
+      <TransactionsProvider>
+        <Transactions />
+      </TransactionsProvider>
     </Default>
   )
 }

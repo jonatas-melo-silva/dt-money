@@ -9,7 +9,7 @@ import {
 import { cn } from '@/libs'
 import { cva } from 'class-variance-authority'
 import { ComponentProps } from 'react'
-import { useTransactions } from './hook'
+import { useTransactionsContext } from '@/hooks'
 
 const styles = cva(
   'flex flex-col w-full min-h-screen items-center justify-start',
@@ -18,7 +18,7 @@ const styles = cva(
 export type TransactionsProps = ComponentProps<'main'>
 
 export function Transactions({ className, ...props }: TransactionsProps) {
-  const { transactions } = useTransactions()
+  const { transactions } = useTransactionsContext()
   return (
     <main className={cn(styles({ className }))} {...props}>
       <Header />
