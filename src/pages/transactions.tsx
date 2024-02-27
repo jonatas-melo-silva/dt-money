@@ -6,10 +6,11 @@ import {
   TableCell,
   TableRoot,
 } from '@/components'
+import { useTransactionsContext } from '@/hooks'
 import { cn } from '@/libs'
+import { TransactionType, currencyFormatter, dataFormatter } from '@/utils'
 import { cva } from 'class-variance-authority'
 import { ComponentProps } from 'react'
-import { useTransactionsContext } from '@/hooks'
 
 const styles = cva(
   'flex flex-col w-full min-h-screen items-center justify-start',
@@ -35,44 +36,21 @@ export function Transactions({ className, ...props }: TransactionsProps) {
                 <TableCell>
                   <PriceHighlight
                     variant={
-                      transaction.type === 'income' ? 'income' : 'outcome'
+                      transaction.type === TransactionType.INCOME
+                        ? TransactionType.INCOME
+                        : TransactionType.OUTCOME
                     }
                   >
-                    {transaction.price}
+                    {transaction.type === TransactionType.OUTCOME && '- '}
+                    {currencyFormatter.format(transaction.price)}
                   </PriceHighlight>
                 </TableCell>
                 <TableCell>{transaction.category}</TableCell>
                 <TableCell variant="lastRight">
-                  {transaction.createdAt}
+                  {dataFormatter.format(new Date(transaction.createdAt))}
                 </TableCell>
               </tr>
             ))}
-            <tr>
-              <TableCell variant="firstLeft">Desenvolvimento de web</TableCell>
-              <TableCell>
-                <PriceHighlight variant="income">+ R$ 12.000,00</PriceHighlight>
-              </TableCell>
-              <TableCell>Venda</TableCell>
-              <TableCell variant="lastRight">13/04/2024</TableCell>
-            </tr>
-            <tr>
-              <TableCell variant="firstLeft">Hambúrguer</TableCell>
-              <TableCell>
-                <PriceHighlight variant="outcome">
-                  - R$ 12.000,00
-                </PriceHighlight>
-              </TableCell>
-              <TableCell>Alimentação</TableCell>
-              <TableCell variant="lastRight">13/04/2024</TableCell>
-            </tr>
-            <tr>
-              <TableCell variant="firstLeft">Computador</TableCell>
-              <TableCell>
-                <PriceHighlight variant="income">+ R$ 12.000,00</PriceHighlight>
-              </TableCell>
-              <TableCell>Venda</TableCell>
-              <TableCell variant="lastRight">13/04/2024</TableCell>
-            </tr>
           </tbody>
         </TableRoot>
       </div>
