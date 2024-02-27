@@ -1,0 +1,36 @@
+{
+  "transactions": [
+    {
+      "id": "1",
+      "description": "First transaction",
+      "type": "income",
+      "category": "salary",
+      "price": 14000,
+      "createdAt": "2024-02-27T13:23:30.199Z"
+    },
+    {
+      "id": "2",
+      "description": "Second transaction",
+      "type": "outcome",
+      "category": "food",
+      "price": 500,
+      "createdAt": "2024-02-27T13:23:30.199Z"
+    },
+    {
+      "id": "3",
+      "description": "Third transaction",
+      "type": "income",
+      "category": "freelance",
+      "price": 2000,
+      "createdAt": "2024-02-27T13:23:30.199Z"
+    },
+    {
+      "id": "4",
+      "description": "Fourth transaction",
+      "type": "outcome",
+      "category": "rent",
+      "price": 1000,
+      "createdAt": "2024-02-27T13:23:30.199Z"
+    }
+  ]
+}
