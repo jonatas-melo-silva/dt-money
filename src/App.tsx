@@ -1,5 +1,10 @@
-import { Default } from './layouts'
+import { Default } from '@/layouts'
+import { Transactions } from '@/pages'
 
 export function App() {
-  return <Default>App</Default>
+  return (
+    <Default>
+      <Transactions />
+    </Default>
+  )
 }
