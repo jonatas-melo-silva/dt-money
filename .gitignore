@@ -25,3 +25,6 @@ dist-ssr
 
 # scripts de configuração do projeto
 setup-react.sh
+
+# Arquivos staticos
+server.json
