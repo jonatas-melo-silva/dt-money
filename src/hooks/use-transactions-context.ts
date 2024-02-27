@@ -1,8 +1,8 @@
 import { TransactionsContext } from '@/contexts'
-import { useContext } from 'react'
+import { useContextSelector } from 'use-context-selector'
 
 export function useTransactionsContext() {
-  const context = useContext(TransactionsContext)
+  const context = useContextSelector(TransactionsContext, (context) => context)
 
   if (!context) {
     throw new Error(

@@ -1,5 +1,6 @@
 import { useTransactions } from '@/hooks'
-import { ReactNode, createContext } from 'react'
+import { ReactNode } from 'react'
+import { createContext } from 'use-context-selector'
 
 export type TransactionContextType = ReturnType<typeof useTransactions>
 
